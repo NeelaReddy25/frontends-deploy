@@ -19,7 +19,6 @@ variable "zone_name" {
   default = "neelareddy.store"
 }
 
-#created this as part jenkins CD
-variable "app_version"  {
-
+variable "app_version" {
+  
 }
