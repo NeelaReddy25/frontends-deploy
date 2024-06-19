@@ -7,7 +7,7 @@ terraform {
     }
     backend "s3" {
         bucket = "neelareddy.stores"
-        key = "expense-dev-frontend"
+        key = "expense-dev-frontends"
         region = "us-east-1"
         dynamodb_table = "neelareddy.stores"
     }
