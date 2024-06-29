@@ -145,11 +145,9 @@ resource "aws_autoscaling_group" "frontend" {
     propagate_at_launch = false
   }
 }
-
-
 resource "aws_autoscaling_policy" "frontend" {
-  name = "${var.project_name}-${var.environment}-${var.common_tags.Component}"
-  policy_type = "TargetTrackingScaling"
+  name                   = "${var.project_name}-${var.environment}-${var.common_tags.Component}"
+  policy_type            = "TargetTrackingScaling"
   autoscaling_group_name = aws_autoscaling_group.frontend.name
 
   target_tracking_configuration {
@@ -157,16 +155,16 @@ resource "aws_autoscaling_policy" "frontend" {
       predefined_metric_type = "ASGAverageCPUUtilization"
     }
 
-    target_value = 70.0
+    target_value = 10.0
   }
 }
 
 resource "aws_lb_listener_rule" "frontend" {
   listener_arn = data.aws_ssm_parameter.web_alb_listener_arn_https.value
-  priority = 100 #less number will be first validated
+  priority     = 100 # less number will be first validated
 
   action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.frontend.arn
   }
 
